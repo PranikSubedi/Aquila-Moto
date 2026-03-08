@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aquila MOTO RENTAL – Ride Your Freedom</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Editorial fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Righteous&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=sentient@400,500,600,700&f[]=general-sans@400,500,600&f[]=bespoke-stencil@400&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    /* ----- BROWNES PHILOSOPHY ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    :root {
+      --cowboy: #4D2D2B;
+      --bistre: #96711A;
+      --brunswick: #1C4D3B;
+      --rich-dark: #0D362B;
+      --sambuca: #3E2811;
+      --spicy-mix: #7A5A3F;
+      --brandy-rose: #B78C72;
+      --parchment: #F1E4D3;
+      --ink-well: #2C2A24;
+      --root-beer: #5C3A2B;
+      --kopper-flare: #B86D3C;
+      --shadow-warm: 0 20px 30px -12px rgba(62, 40, 17, 0.25), 0 8px 12px rgba(0,0,0,0.05);
+      --shadow-card: 0 12px 28px -8px rgba(77, 45, 43, 0.15), 0 4px 12px rgba(0, 0, 0, 0.02);
+      --transition-slow: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+      --leather-overlay: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.08"><path d="M30 30 L170 30 M30 80 L170 80 M30 130 L170 130 M30 170 L170 170 M30 30 L30 170 M80 30 L80 170 M130 30 L130 170 M170 30 L170 170" stroke="%234d2d2b" stroke-width="1.2" fill="none"/><circle cx="50" cy="50" r="6" fill="%2396711a" opacity="0.2"/><circle cx="150" cy="150" r="6" fill="%2396711a" opacity="0.2"/></svg>');
+    }
+    body {
+      background-color: var(--parchment);
+      color: var(--sambuca);
+      font-family: 'General Sans', 'Source Sans 3', system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+    h1, h2, h3, .serif-heading {
+      font-family: 'Sentient', 'Playfair Display', Georgia, serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .category-label, .slider-category, .nav-links a {
+      font-family: 'General Sans', 'Source Sans 3', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .bike-specs, .mono-spec {
+      font-family: 'Bespoke Stencil', 'Courier New', Courier, monospace;
+      font-size: 0.9rem;
+    }
+    .leather-bg {
+      position: relative;
+      background-color: var(--parchment);
+      background-image: var(--leather-overlay);
+      background-repeat: repeat;
+    }
+    .btn-metallic {
+      background: radial-gradient(circle at 30% 20%, #b8935a, #5e3a22);
+      color: var(--parchment);
+      border: none;
+      border-radius: 60px;
+      padding: 14px 40px;
+      font-weight: 600;
+      box-shadow: 0 8px 14px rgba(77, 45, 43, 0.4), inset 0 2px 4px rgba(255, 215, 170, 0.5);
+      transition: var(--transition-slow);
+      text-shadow: 0 1px 2px #2b1e10;
+      display: inline-block;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-metallic:hover {
+      background: radial-gradient(circle at 40% 30%, #c9a462, #4d2d2b);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 25px -6px #3e2811;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand img {
+      height: 45px;
+      width: auto;
+    }
+    .brand span {
+      font-size: 20px;
+      font-weight: 600;
+      color: #4D2D2B;
+    }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+    .nav-links li a {
+      font-weight: 500;
+      transition: 0.3s;
+      color: black;
+      text-decoration: none;
+    }
+    .nav-links li a:hover {
+      color: #4D2D2B;
+    }
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--cowboy);
+    }
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform 0.3s ease;
+        z-index: 999;
+      }
+      .nav-menu.active {
+        transform: scaleY(1);
+      }
+      .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+      .hamburger {
+        display: block;
+      }
+      .brand span {
+        display: none;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 90vh;
+      background: 
+        linear-gradient(127deg, rgba(13, 54, 43, 0.7) 0%, rgba(77, 45, 43, 0.8) 100%),
+        url("https://images.pexels.com/photos/31229571/pexels-photo-31229571/free-photo-of-royal-enfield-motorcycle-on-scenic-road-in-india.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")
+        center/cover no-repeat fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--parchment);
+      padding: 20px;
+    }
+    @media (max-width: 800px) {
+      .hero {
+        background-attachment: scroll;
+      }
+    }
+    .hero-content {
+      max-width: 950px;
+      animation: fadeUp 1s ease;
+    }
+    @keyframes fadeUp {
+      0% { opacity:0; transform:translateY(14px); }
+      100% { opacity:1; transform:translateY(0); }
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 8vw, 5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      text-shadow: 4px 4px 0px #2d2019, 8px 8px 10px rgba(0,0,0,0.3);
+    }
+    .hero-tagline {
+      font-size: 1.8rem;
+      font-style: italic;
+      font-weight: 300;
+      margin-top: 10px;
+      color: #f0dbc8;
+    }
+    .hero-description {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 20px auto 30px;
+      color: #fbeee2;
+      font-weight: 400;
+    }
+
+    /* Products */
+    .products {
+      padding: 100px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .products h2 {
+      font-size: 3rem;
+      color: var(--cowboy);
+      margin-bottom: 16px;
+      display: inline-block;
+      border-bottom: 4px solid var(--bistre);
+      padding-bottom: 8px;
+    }
+    .feature-grid {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 40px 0 50px;
+    }
+    .feature-chip {
+      background: var(--parchment);
+      border: 1px solid var(--brandy-rose);
+      padding: 12px 28px;
+      border-radius: 100px;
+      font-weight: 500;
+      color: var(--sambuca);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(2px);
+      transition: var(--transition-slow);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .feature-chip i {
+      color: var(--bistre);
+    }
+    .feature-chip:hover {
+      background: var(--brandy-rose);
+      color: var(--parchment);
+      transform: translateY(-4px);
+    }
+    .feature-chip:hover i {
+      color: var(--parchment);
+    }
+
+    /* Category tabs */
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 40px 0 30px;
+    }
+    .tab {
+      background: transparent;
+      border: 2px solid var(--bistre);
+      color: var(--cowboy);
+      padding: 10px 28px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: var(--transition-slow);
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+    .tab.active,
+    .tab:hover {
+      background: var(--cowboy);
+      color: var(--parchment);
+      border-color: var(--bistre);
+      transform: scale(1.02);
+      box-shadow: 0 8px 16px #4d2d2b55;
+    }
+
+    .slider-cards {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .card {
+      flex: 1 1 320px;
+      max-width: 360px;
+      background: #fcf6ed;
+      background-image: var(--leather-overlay);
+      border-radius: 40px;
+      padding: 28px 20px 28px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(183, 140, 114, 0.3);
+      transition: var(--transition-slow);
+      backdrop-filter: blur(2px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 30px 40px -14px #3e2a1f;
+      border-color: var(--bistre);
+    }
+    .card-image {
+      width: 100%;
+      height: 210px;
+      background: #ece1d3;
+      border-radius: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      border: 2px solid #dbbc9b;
+    }
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 12px rgba(58, 36, 24, 0.3));
+      transition: 0.3s;
+    }
+    .card:hover img {
+      transform: scale(1.03);
+    }
+    .card h3 {
+      margin: 6px 0px;
+      font-size: 1.8rem;
+      color: var(--cowboy);
+      font-weight: 600;
+    }
+    .card p {
+      color: var(--spicy-mix);
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .bike-specs {
+      background: #e9dbcf;
+      padding: 18px 16px;
+      border-radius: 30px;
+      width: 100%;
+      text-align: left;
+      border-left: 5px solid var(--bistre);
+      font-family: 'Bespoke Stencil', 'Courier New', monospace;
+    }
+    .bike-specs div {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 8px 0;
+      color: var(--sambuca); /* dark brown text */
+    }
+    .bike-specs i {
+      color: var(--cowboy); /* changed from green to brown */
+      width: 24px;
+      font-size: 1.2rem;
+    }
+    .card-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--kopper-flare);
+      margin: 10px 0 5px;
+    }
+    .btn-card {
+      background: var(--cowboy);
+      color: var(--parchment);
+      border: none;
+      border-radius: 40px;
+      padding: 12px 30px;
+      font-weight: 600;
+      margin-top: 12px;
+      cursor: pointer;
+      transition: var(--transition-slow);
+      width: 100%;
+      font-size: 1.1rem;
+    }
+    .btn-card:hover {
+      background: var(--kopper-flare);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .slider-controls {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+    .slider-btn {
+      background: transparent;
+      border: 2px solid var(--bistre);
+      color: var(--cowboy);
+      padding: 12px 38px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: var(--transition-slow);
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+    .slider-btn:hover {
+      background: var(--cowboy);
+      color: var(--parchment);
+      border-color: var(--bistre);
+      transform: scale(1.02);
+      box-shadow: 0 8px 16px #4d2d2b55;
+    }
+
+    /* About */
+    .about {
+      padding: 120px 10%;
+      background: #f1e4d3;
+      background-image: var(--leather-overlay), radial-gradient(circle at 70% 40%, rgba(183,140,114,0.15) 0%, transparent 60%);
+      text-align: center;
+      border-top: 2px solid var(--brandy-rose);
+      border-bottom: 2px solid var(--brandy-rose);
+    }
+    .about h2 {
+      font-size: 3rem;
+      color: var(--cowboy);
+      margin-bottom: 30px;
+    }
+    .about p {
+      max-width: 950px;
+      margin: 0 auto;
+      font-size: 1.25rem;
+      color: var(--sambuca);
+      line-height: 1.9;
+      background: rgba(255, 246, 236, 0.7);
+      backdrop-filter: blur(3px);
+      padding: 40px 50px;
+      border-radius: 80px 20px 80px 20px;
+      border: 1px solid var(--brandy-rose);
+      font-family: 'Libre Baskerville', Georgia, serif;
+    }
+
+    /* Contact */
+    .contact {
+      padding: 100px 8%;
+      background: linear-gradient(165deg, #dccbbd, #efe6db);
+      text-align: center;
+    }
+    .contact h2 {
+      font-size: 2.8rem;
+      color: var(--rich-dark);
+      margin-bottom: 50px;
+      text-shadow: 2px 2px 0px #ac927b;
+    }
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 50px;
+    }
+    .contact-item {
+      background: rgba(241, 228, 211, 0.8);
+      backdrop-filter: blur(6px);
+      padding: 42px 32px;
+      border-radius: 70px 20px 70px 20px;
+      width: 320px;
+      border: 1px solid var(--bistre);
+      box-shadow: var(--shadow-warm);
+      transition: var(--transition-slow);
+      color: var(--sambuca);
+      text-decoration: none;
+    }
+    .contact-item:hover {
+      background: var(--parchment);
+      transform: translateY(-10px);
+      border-color: var(--kopper-flare);
+      box-shadow: 0 30px 40px -12px #4d2d2b;
+    }
+    .contact-item i {
+      font-size: 3.8rem;
+      background: linear-gradient(145deg, var(--bistre), var(--kopper-flare));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .contact-item h4 {
+      font-size: 2rem;
+      font-family: 'Sentient', serif;
+      color: var(--cowboy);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--rich-dark);
+      color: #d9c6b0;
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 5px solid var(--bistre);
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #d9c6b0;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover {
+      color: var(--brandy-rose);
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .social-icons a {
+      color: var(--brandy-rose);
+      font-size: 1.8rem;
+      transition: transform 0.3s;
+    }
+    .social-icons a:hover {
+      transform: translateY(-5px);
+      color: var(--bistre);
+    }
+    footer i {
+      color: var(--brandy-rose);
+    }
+
+    /* Booking Page */
+    .booking-page {
+      display: none;
+      min-height: 80vh;
+      padding: 60px 20px;
+      background: linear-gradient(165deg, #dccbbd, #efe6db);
+      justify-content: center;
+      align-items: center;
+    }
+    .booking-page.active {
+      display: flex;
+    }
+    .booking-container {
+      background: var(--parchment);
+      max-width: 500px;
+      width: 100%;
+      padding: 50px 40px;
+      border-radius: 60px 20px 60px 20px;
+      box-shadow: var(--shadow-warm);
+      border: 2px solid var(--bistre);
+      text-align: center;
+    }
+    .booking-container h2 {
+      font-size: 2.5rem;
+      color: var(--cowboy);
+      margin-bottom: 10px;
+    }
+    .booking-container p {
+      font-size: 1.2rem;
+      color: var(--spicy-mix);
+      margin-bottom: 30px;
+    }
+    .booking-container .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .booking-container label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: var(--sambuca);
+    }
+    .booking-container input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid var(--brandy-rose);
+      border-radius: 40px;
+      background: white;
+      font-size: 1rem;
+    }
+    .booking-container .btn-submit {
+      width: 100%;
+      margin-top: 20px;
+      background: var(--bistre);
+      color: var(--parchment);
+      border: none;
+      border-radius: 60px;
+      padding: 14px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition-slow);
+    }
+    .booking-container .btn-submit:hover {
+      background: var(--kopper-flare);
+      transform: translateY(-3px);
+    }
+    .booking-container .back-link {
+      display: inline-block;
+      margin-top: 25px;
+      color: var(--cowboy);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .error-message {
+      color: #e74c3c;
+      font-size: 0.9rem;
+      margin-top: 5px;
+      display: none;
+    }
+    /* Hide main content when booking page is active */
+    body.booking-active .main-content {
+      display: none;
+    }
+    body.booking-active .booking-page {
+      display: flex;
+    }
+
+    .card-cover {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1001;
+    }
+    .card-cover.active {
+      display: flex;
+    }
+    .card-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-top: 30px;
+      background-color: var(--parchment);
+      padding: 30px 40px; 
+      border-radius:20px;
+    }
+
+    .card-container.active {
+      display: flex;
+    }
+
+    .card-title {
+      font-size: 2rem;
+      color: var(--cowboy);
+    }
+
+    .card-message {
+      font-size: 1.1rem;
+      color: var(--sambuca);
+      text-align: center;
+      max-width: 400px;
+    }
+  </style>
+</head>
+<body class="leather-bg">
+  <!-- Main Content -->
+  <div class="main-content">
+    <header>
+      <nav>
+        <div class="brand">
+          <img src="https://i.ibb.co/JjpYx1Sq/logo.png" alt="Aquila Moto Rental logo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2245%22%20fill%3D%22%2396711a%22%2F%3E%3Ctext%20x%3D%2218%22%20y%3D%2268%22%20font-size%3D%2254%22%20fill%3D%22%234d2d2b%22%3E⛰️%3C%2Ftext%3E%3C%2Fsvg%3E';">
+          <span>AQUILA MOTO RENTAL</span>
+        </div>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+        <div class="nav-menu" id="nav-menu">
+          <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#products">Bikes</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-content">
+          <h1>RIDE YOUR FREEDOM</h1>
+          <p class="hero-tagline">For wanderers & explorers.</p>
+          <p class="hero-description">
+            We don’t just rent bikes—we hand you the keys to your next great story. 
+            From rugged hills to city streets, ride with confidence.
+          </p>
+          <a href="#products" class="btn-metallic">Explore</a>
+        </div>
+      </section>
+
+      <!-- Products -->
+      <section class="products" id="products">
+        <h2>OUR SERVICES</h2>
+        <div class="feature-grid">
+          <div class="feature-chip"><i class="fa-regular fa-calendar"></i> Weekly / Daily</div>
+          <div class="feature-chip"><i class="fa-solid fa-screwdriver-wrench"></i> Well Maintained</div>
+          <div class="feature-chip"><i class="fa-regular fa-id-card"></i> Easy Documentation</div>
+          <a href="https://maps.app.goo.gl/44rnQmzMgihhsSbE6" target="_blank" rel="noopener" class="feature-chip">
+            <i class="fa-solid fa-location-dot"></i> Pick up Butwal
+          </a>
+          <div class="feature-chip"><i class="fa-solid fa-tag"></i> Best Rates</div>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="category-tabs" id="category-tabs"></div>
+
+        <div class="slider-wrapper">
+          <div class="slider-cards" id="slider-cards-container"></div>
+          <div class="slider-controls">
+            <button class="slider-btn" id="prev-bike"><i class="fa-solid fa-arrow-left"></i> previous</button>
+            <button class="slider-btn" id="next-bike">next <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="about" id="about">
+        <h2>About us</h2>
+        <p>Aquila Moto Rental was created to inspire movement and meaningful rides. We go beyond simply offering bikes — we prepare every ride to be the beginning of something unforgettable. From peaceful countryside roads to thrilling mountain curves, your journey starts with trust, quality, and freedom. Located in Butwal, we offer a wide range of well-maintained motorcycles for every kind of rider.</p>
+      </section>
+
+      <!-- Contact -->
+      <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+          <a href="mailto:aquilamotorental@gmail.com" class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <h4>Email</h4>
+            <p>aquilamotorental@gmail.com</p>
+          </a>
+          <a href="https://www.instagram.com/aquilamotorental?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="contact-item">
+            <i class="fab fa-instagram"></i>
+            <h4>Instagram</h4>
+            <p>@AquilaMotoRental</p>
+          </a>
+          <!-- WhatsApp link -->
+         <div class="contact-container">
+          <a href="https://wa.me/9779867424072" class="contact-item">
+            <i class="fab fa-whatsapp"></i>
+            <h4>WhatsApp</h4>
+            <p>+977 9867424072</p>
+          </a>
+          </a>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-links">
+          <a href="#">Home</a>
+          <a href="#products">Bikes</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/aquilamotorental?igsh=MWw2OHZrb2I5aHJxdg==" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="mailto:aquilamotorental@gmail.com"><i class="fas fa-envelope"></i></a>
+          <a href="https://wa.me/9779812345678" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>© 2026 Aquila Moto Rental — Butwal, Nepal <i class="fa-solid fa-motorcycle"></i></p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Booking Page -->
+  <div class="booking-page" id="bookingPage">
+    <div class="booking-container">
+      <h2>Book Your Ride</h2>
+      <p id="selectedBikeDisplay"></p>
+      <form id="bookingForm">
+        <input type="hidden" id="bikeName" name="bike">
+        
+        <div class="form-group">
+          <label for="fullName">Full Name *</label>
+          <input type="text" id="fullName" name="name" pattern="[A-Za-z\s]+" title="Only alphabets and spaces allowed" required>
+        </div>
+        <div class="form-group">
+          <label for="contact">Contact Number (10 digits) *</label>
+          <input type="tel" id="phoneNumber"  name="phone" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" required title="Please enter exactly 10 digits">
+          <div class="error-message" id="phoneError">Please enter exactly 10 digits</div>
+        </div>
+        <div class="form-group">
+          <label for="duration">Rental Duration (days) *</label>
+          <input type="number" id="duration" name="duration" min="1" max="30" required>
+        </div>
+        <button type="submit" class="btn-submit">Confirm Booking</button>
+        <span class="back-link" onclick="closeBooking()">← Back to bikes</span>
+      </form>
+    </div>
+
+<div class="card-cover">
+  <div class="card-container">
+    <h1 class="card-title">Bike Booked</h1>
+    <p class="card-message">Thank you for your booking! We will contact you shortly to confirm the details.</p>
+    <button class="btn-card" onclick="closeBooking()">Okay</button>
+  </div>
+</div>
+  </div>
+
+  <script>
+    
+      // Initialize EmailJS with your public key
+      emailjs.init({
+        publicKey: "A61xIxJCeoJpE9N9S" // Replace with your actual public key
+      });
+
+      // ----- Bike data -----
+      const sections = [
+        {
+          category:"Commute",
+          bikes: [
+            { name: 'Honda Shine', desc: 'A study in bronze & reliability', img: "https://5.imimg.com/data5/NT/JE/GLADMIN-40282700/cb-shine-500x500.png", speed: 'Top: 100km/h', mileage: 'Mileage: 55km/l', condition: 'Condition: excellent', price: 'Rs 1000/day' },
+            { name: 'Pulsar 150', desc: 'Urban torque, sepia tone', img: 'https://cdn.bajajauto.com/en-bd/-/media/globalbajajauto/common-media/product-detail-page-banners/pulsar/150-sd-abs.webp', speed: 'Top: 110km/h', mileage: 'Mileage: 49 km/l', condition: 'Condition: excellent', price: 'Rs 1200 /day' }
+          ]
+        },
+        {
+          category: 'Sports',
+          bikes: [
+            { name: 'KTM Duke 200', desc: 'sharp as burnished steel', img: 'https://techlekh.com/wp-content/uploads/2022/06/Side-Styling-in-KTM-Duke-200.png', speed: 'Top: 142 km/h', mileage: 'Mileage: 35 km/l', condition: 'Condition: excellent', price: 'Rs 2100 /day' },
+            { name: 'Yamaha R15', desc: 'racer silhouette, umber flash', img: 'https://imgd.aeplcdn.com/1056x594/n/cw/ec/209893/r15-right-side-view-2.png?isig=0&q=80', speed: 'Top: 140 km/h', mileage: 'Mileage: 45 km/l', condition: 'Condition: excellent', price: 'Rs 2000/day' }
+          ]
+        },
+        {
+          category: 'Adventure',
+          bikes: [
+            { name: 'Xpulse 200', desc: 'for dusty trails & moorlands', img: 'https://imgd.aeplcdn.com/1280x720/n/cw/ec/105184/xpulse-200-4v-right-side-view-11.png?isig=0', speed: 'Top: 130 km/h', mileage: 'Mileage: 3 km/l', condition: 'Condition: excellent', price: 'Rs 1500 /day' },
+            { name: 'Himalayan 450', desc: 'the true earth vessel', img: 'https://royalenfieldmotorcycles.co.nz/wp-content/uploads/sites/2/2023/11/Him-Kamet-White-side-view2-1.png', speed: 'Top: 135 km/h', mileage: 'Mileage: 29 km/l', condition: 'Condition: excellent', price: 'Rs 3000 /day' }
+          ]
+        },
+        {
+          category: 'Cruiser',
+          bikes: [
+            { name: 'Meteor 350', desc: 'smooth as aged leather', img: 'https://www.royalenfield.com/content/dam/royal-enfield/usa/motorcycles/meteor/colours/studio-shots/matte-black/01-black.png', speed: 'Top: 120 km/h', mileage: 'Mileage: 32 km/l', condition: 'Condition: excellent', price: 'Rs 2200 /day' },
+            { name: 'Honda CB 350', desc: 'classic lines, warm tone', img: 'https://imgd.aeplcdn.com/1056x594/n/cw/ec/200503/cb350-right-side-view-3.png?isig=0&q=80', speed: 'Top: 130 km/h', mileage: 'Mileage: 35 km/l', condition: 'Condition: excellent', price: 'Rs 2200 /day' }
+          ]
+        }
+      ];
+
+      let currentIndex = 0;
+      const container = document.getElementById('slider-cards-container');
+      const tabsContainer = document.getElementById('category-tabs');
+      const prevBtn = document.getElementById('prev-bike');
+      const nextBtn = document.getElementById('next-bike');
+
+      function renderTabs() {
+        let html = '';
+        sections.forEach((sec, idx) => {
+          html += `<button class="tab ${idx === currentIndex ? 'active' : ''}" data-index="${idx}">${sec.category}</button>`;
+        });
+        tabsContainer.innerHTML = html;
+        document.querySelectorAll('.tab').forEach(tab => {
+          tab.addEventListener('click', (e) => {
+            currentIndex = parseInt(e.target.dataset.index);
+            renderTabs();
+            renderCards();
+          });
+        });
+      }
+
+      function renderCards() {
+        const sec = sections[currentIndex];
+        let htmlStr = '';
+        sec.bikes.forEach(b => {
+          htmlStr += `
+            <div class="card">
+              <div class="card-image">
+                <img src="${b.img}" alt="${b.name} motorcycle" loading="lazy">
+              </div>
+              <h3>${b.name}</h3>
+              <p>${b.desc}</p>
+              <div class="bike-specs">
+                <div><i class="fa-solid fa-gauge-high"></i> ${b.speed}</div>
+                <div><i class="fa-solid fa-droplet"></i> ${b.mileage}</div>
+                <div><i class="fa-regular fa-circle-check"></i> ${b.condition}</div>
+              </div>
+              <div class="card-price">${b.price}</div>
+              <button class="btn-card rent-btn" data-bike="${b.name}">Rent Now</button>
+            </div>
+          `;
+        });
+        container.innerHTML = htmlStr;
+        document.querySelectorAll('.rent-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const bikeName = e.target.getAttribute('data-bike');
+            openBooking(bikeName);
+          });
+        });
+      }
+
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + sections.length) % sections.length;
+        renderTabs();
+        renderCards();
+      });
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % sections.length;
+        renderTabs();
+        renderCards();
+      });
+
+      renderTabs();
+      renderCards();
+
+      // Mobile menu
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('nav-menu');
+      hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => navMenu.classList.remove('active'));
+      });
+
+      // ----- Booking Page Logic -----
+      const body = document.body;
+      const bookingPage = document.getElementById('bookingPage');
+      const bikeNameInput = document.getElementById('bikeName');
+      const selectedBikeDisplay = document.getElementById('selectedBikeDisplay');
+      const bookingForm = document.getElementById('bookingForm');
+      const phoneInput = document.getElementById('phoneNumber');
+      const phoneError = document.getElementById('phoneError');
+      const nameInput = document.getElementById('fullName');
+      const cardCover = document.querySelector('.card-cover');
+      const cardContainer = document.querySelector('.card-container');
+
+      // Real‑time name filtering: allow only letters and spaces
+      nameInput.addEventListener('input', () => {
+        nameInput.value = nameInput.value.replace(/[^A-Za-z\s]/g, '');
+      });
+
+      // // Phone: only digits, max 10
+      phoneInput.addEventListener('input', () => {
+        phoneInput.value = phoneInput.value.replace(/\D/g, '');
+        if (phoneInput.value.length > 10) {
+          phoneInput.value = phoneInput.value.slice(0, 10);
+        }
+        // Hide error while typing (will be checked on submit)
+        phoneError.style.display = 'none';
+      });
+
+      function openBooking(bikeName) {
+        bikeNameInput.value = bikeName;
+        selectedBikeDisplay.textContent = bikeName;
+        body.classList.add('booking-active');
+        // Reset form and error messages when opening
+        bookingForm.reset();
+        phoneError.style.display = 'none';
+        cardCover.classList.remove('active');
+        cardContainer.classList.remove('active');
+      }
+
+      window.closeBooking = function() {
+        body.classList.remove('booking-active');
+        bookingForm.reset();
+        phoneError.style.display = 'none';
+        cardCover.classList.remove('active');
+        cardContainer.classList.remove('active');
+      };
+
+      // Form submission
+      bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Validate phone number length
+        if (phoneInput.value.length !== 10) {
+          phoneError.style.display = 'block';
+          phoneInput.focus();
+          return;
+        } else {
+          phoneError.style.display = 'none';
+        }
+
+        // Validate name (not empty)
+        if (!nameInput.value.trim()) {
+          alert('Please enter your full name.');
+          nameInput.focus();
+          return;
+        }
+
+        sendEmailNotification(phoneInput.value, nameInput.value, bikeNameInput.value);
+        cardCover.classList.add('active');
+        cardContainer.classList.add('active');
+      });
+
+
+      function sendEmailNotification(number, name, bike) {
+        const templateParams = {
+          to_email: 'aquilamotorental@gmail.com', // Replace with your email or use dynamic value
+          from_name: 'Aquila Moto Rental Website',
+          subject: 'New Bike Booking Request',
+          message: `New booking request:\n\nName: ${name}\nContact Number:
+  ${number}\nBike: ${bike}`
+        };
+
+        emailjs.send('service_y79nafb', 'template_x88lhoi', templateParams)
+          .then((response) => {
+            console.log('Email sent successfully!', response.status, response.text);
+          }, (error) => {
+            console.error('Failed to send email:', error);
+          });
+      } 
+  </script>
+</body>
+</html>
